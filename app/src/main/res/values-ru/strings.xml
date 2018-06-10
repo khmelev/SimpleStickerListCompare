@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Сравниватель списков</string>
+    <string name="action_settings">Настройки</string>
+    <string name="compare_result">Результат сравнения</string>
+    <string name="insert_stickers_list">Вставьте список наклеек сюда</string>
+</resources>
