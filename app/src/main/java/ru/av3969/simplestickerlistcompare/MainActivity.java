@@ -9,13 +9,11 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +21,11 @@ public class MainActivity extends AppCompatActivity {
     EditText foreignStickersView;
     EditText compareResultView;
 
-    Pattern splitPattern = Pattern.compile("[,./;: ]");
+    TextView statMy;
+    TextView statForeign;
+    TextView statCompare;
+
+    Pattern splitPattern = Pattern.compile("[,./;:\\s_\n]+");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +38,16 @@ public class MainActivity extends AppCompatActivity {
         foreignStickersView = findViewById(R.id.foreignStickers);
         compareResultView = findViewById(R.id.compareResult);
 
+        statMy = findViewById(R.id.statMy);
+        statForeign = findViewById(R.id.statForeign);
+        statCompare = findViewById(R.id.statCompare);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                makeCompare(splitPattern.split(myStickersView.getText()),
-                        splitPattern.split(foreignStickersView.getText()));
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
     }
@@ -60,11 +64,13 @@ public class MainActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            case R.id.action_compare:
+                makeCompare(splitPattern.split(myStickersView.getText()),
+                        splitPattern.split(foreignStickersView.getText()));
         }
 
         return super.onOptionsItemSelected(item);
@@ -85,7 +91,12 @@ public class MainActivity extends AppCompatActivity {
             if (matches.length() > 0) matches.append(", ");
             matches.append(str);
         }
+
         compareResultView.setText(matches.toString());
+
+        statMy.setText(String.valueOf(myStickers.length));
+        statForeign.setText(String.valueOf(foreignStickers.length));
+        statCompare.setText(String.valueOf(matchesList.size()));
     }
 
 }

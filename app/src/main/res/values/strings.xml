@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Simple sticker list compare</string>
+    <string name="app_name">Comparator</string>
     <string name="action_settings">Settings</string>
     <string name="compare_result">Compare result</string>
     <string name="insert_stickers_list">Insert stickers list</string>
+    <string name="compare">Compare</string>
 </resources>

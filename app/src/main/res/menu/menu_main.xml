@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ru.av3969.simplestickerlistcompare.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_compare"
         android:orderInCategory="100"
+        android:title="@string/compare"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="150"
         android:title="@string/action_settings"
         app:showAsAction="never" />
 </menu>
